@@ -6,11 +6,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
 import HomePage from './pages/HomePage.jsx';
+import TD04Page from './pages/TD04Page.jsx'; // Importă pagina nouă
 import T46Page from './pages/T46Page.jsx';
-import T47Page from './pages/T47Page.jsx'; // Importă pagina nouă
+import T47Page from './pages/T47Page.jsx';
 import T48Page from './pages/T48Page.jsx';
-import T53Page from './pages/T53Page.jsx'; // Importă pagina nouă
-import T59Page from './pages/T59Page.jsx'; // Importă pagina nouă
+import T53Page from './pages/T53Page.jsx';
+import T55Page from './pages/T55Page.jsx'; // Importă pagina nouă
+import T59Page from './pages/T59Page.jsx';
 
 // Creăm router-ul care definește toate paginile (rutele)
 const router = createBrowserRouter([
@@ -21,6 +23,10 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <HomePage />,
+      },
+      {
+        path: 'td04',
+        element: <TD04Page />,
       },
       {
         path: 't46',
@@ -37,6 +43,10 @@ const router = createBrowserRouter([
       {
         path: 't53',
         element: <T53Page />,
+      },
+      {
+        path: 't55',
+        element: <T55Page />,
       },
       {
         path: 't59',
