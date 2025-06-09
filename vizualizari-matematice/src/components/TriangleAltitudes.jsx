@@ -14,64 +14,37 @@ function TriangleAltitudes() {
 
     /**
      * Găsește piciorul cevienei P_foot pe segmentul V1V2.
-     * Unghiul vizat este <P, P_foot, V_anchor> = `angle`.
-     * Această versiune folosește o metodă algebrică robustă.
+     * Unghiul vizat este <P, P_foot, V_anchor> = `targetAngle`.
+     * Metoda: Căutare iterativă pe segment pentru a minimiza eroarea.
      */
-    const findCevianFoot = (P, V1, V2, V_anchor, angle) => {
-      // Setăm un sistem de coordonate local unde V_anchor este originea
-      // și V1 este pe axa X a acestui sistem local.
-      // Notă: pentru <AA1C>, ancora e C, deci V_anchor=C, iar B=V1, A=P.
-      // Deci, vom lucra pe dreapta V_anchor -> V1.
-      
-      let local_x_axis = p5.Vector.sub(V1, V_anchor);
-      let local_len = local_x_axis.mag();
-      if (local_len < 0.1) return V1; // Evită împărțirea la zero
-      local_x_axis.normalize();
+    const findCevianFoot = (P, V1, V2, V_anchor, targetAngle) => {
+      let bestPoint = V1.copy();
+      let minError = Infinity;
+      const numSteps = 100; // Suficientă precizie pentru vizualizare
 
-      let local_y_axis = local_x_axis.copy().rotate(-p.HALF_PI);
+      for (let i = 0; i <= numSteps; i++) {
+        const t = i / numSteps;
+        const currentPoint = p5.Vector.lerp(V1, V2, t);
 
-      // Coordonatele lui P în sistemul local
-      let P_vec = p5.Vector.sub(P, V_anchor);
-      let P_local = p.createVector(P_vec.dot(local_x_axis), P_vec.dot(local_y_axis));
+        // Calculăm unghiul în punctul curent
+        const v1 = p5.Vector.sub(P, currentPoint);
+        const v2 = p5.Vector.sub(V_anchor, currentPoint);
+        
+        // Verificăm să nu fie vectori nuli
+        if (v1.magSq() < 1e-6 || v2.magSq() < 1e-6) continue;
 
-      // Punctul căutat P_foot se află pe axa X locală, la o distanță 'd' de origine.
-      // P_foot_local = (d, 0)
-      // Vectorul P_foot -> P in coordonate locale este (P_local.x - d, P_local.y)
-      // Vectorul P_foot -> V_anchor in coordonate locale este (-d, 0)
-      
-      // Produsul scalar: v1.dot(v2) = |v1|*|v2|*cos(theta)
-      // (-d) * (P_local.x - d) = sqrt(d^2) * sqrt((P_local.x-d)^2 + P_local.y^2) * cos(angle)
-      
-      // Ecuația devine una de gradul 2 în 'd'
-      const A = p.sq(p.tan(angle));
-      const B = -2 * P_local.x;
-      const C = p.sq(P_local.x) + p.sq(P_local.y);
-      
-      if (p.abs(p.cos(angle)) < 1e-9) { // Cazul unghiului de 90 de grade
-        let d = P_local.x;
-        let P_foot = p5.Vector.add(V_anchor, local_x_axis.copy().mult(d));
-        return P_foot;
+        const dot = v1.dot(v2);
+        const magProduct = v1.mag() * v2.mag();
+        const angleAtPoint = p.acos(p.constrain(dot / magProduct, -1, 1));
+
+        const error = p.abs(angleAtPoint - targetAngle);
+
+        if (error < minError) {
+          minError = error;
+          bestPoint = currentPoint;
+        }
       }
-
-      // Rezolvăm ecuația d^2 - 2*P_local.x*d + (P_local.x^2 + P_local.y^2) * cos^2(angle) = 0
-      const cos2 = p.sq(p.cos(angle));
-      const a_eq = 1;
-      const b_eq = -2 * P_local.x;
-      const c_eq = (p.sq(P_local.x) + p.sq(P_local.y)) * cos2;
-
-      const delta = p.sq(b_eq) - 4 * a_eq * c_eq;
-
-      if (delta < 0) return V1; // Nu există soluție reală
-
-      const d1 = (-b_eq + p.sqrt(delta)) / (2 * a_eq);
-      const d2 = (-b_eq - p.sqrt(delta)) / (2 * a_eq);
-
-      // Alegem soluția 'd' care se află pe segmentul [0, local_len]
-      let d = (d1 >= 0 && d1 <= local_len) ? d1 : d2;
-      
-      // Transformăm 'd' înapoi în coordonate globale
-      let P_foot = p5.Vector.add(V_anchor, local_x_axis.copy().mult(d));
-      return P_foot;
+      return bestPoint;
     };
 
 
@@ -112,16 +85,13 @@ function TriangleAltitudes() {
       const [A, B, C] = vertices;
       
       // unghiurile sunt ∠AA₁C, ∠BB₁A, ∠CC₁B
-      // Pentru AA1, unghiul AA1C este format cu ancora C. Latura este BC.
       const A1 = findCevianFoot(A, B, C, C, targetAngleRad);
-      // Pentru BB1, unghiul BB1A este format cu ancora A. Latura este CA.
       const B1 = findCevianFoot(B, C, A, A, targetAngleRad);
-      // Pentru CC1, unghiul CC1B este format cu ancora B. Latura este AB.
       const C1 = findCevianFoot(C, A, B, B, targetAngleRad);
       
-      const isAltitude = Math.abs(angleSlider.value() - 90) < 0.5;
+      const isAltitude = Math.abs(angleSlider.value() - 90) < 1.5; // Toleranță mai mare
 
-      // Desenează triunghiul
+      // Desenarea
       p.stroke(0); p.strokeWeight(1); p.noFill();
       p.triangle(A.x, A.y, B.x, B.y, C.x, C.y);
       p.fill(0); p.noStroke();
@@ -129,14 +99,12 @@ function TriangleAltitudes() {
       p.text('B', B.x + 5, B.y + 15);
       p.text('C', C.x, C.y - 10);
 
-      // Desenează cevienele
       p.strokeWeight(isAltitude ? 2.5 : 1.5);
       p.stroke(isAltitude ? 'green' : 'tomato');
       p.line(A.x, A.y, A1.x, A1.y);
       p.line(B.x, B.y, B1.x, B1.y);
       p.line(C.x, C.y, C1.x, C1.y);
       
-      // Desenează picioarele cevienelor
       p.fill(isAltitude ? 'green' : 'tomato'); p.noStroke();
       p.ellipse(A1.x, A1.y, 7);
       p.ellipse(B1.x, B1.y, 7);
@@ -147,7 +115,6 @@ function TriangleAltitudes() {
       p.text('B1', B1.x - 20, B1.y - 5);
       p.text('C1', C1.x + 5, C1.y - 5);
       
-      // Desenează vârfurile
       p.fill('royalblue'); p.stroke(0); p.strokeWeight(1);
       for(let v of vertices) {
           p.ellipse(v.x, v.y, 12);
