@@ -1,18 +1,19 @@
 import React from 'react';
-import AreaRatioVisualizer from '../components/AreaRatioVisualizer';
+import CevaTheoremVisualizer from '../components/CevaTheoremVisualizer';
 
 function TFig08Page() {
   return (
     <div>
-      <h2>Card T Fig 08: Raportul segmentelor</h2>
+      <h2>Card T Fig 08: Relație pe mediană</h2>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Problemă:</strong> Fie P un punct pe mediana AD a triunghiului ABC. Dreapta BP intersectează AC în E. Demonstrați că <code>AP : PD = 2 · AE : EC</code>.
+        <strong>Problemă:</strong> Printr-un punct P de pe mediana AD a triunghiului ABC, se duce dreapta BP care intersectează AC în E. Demonstrați că <code>AP / PD = 2 * (AE / EC)</code>.
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Vizualizare:</strong> Trageți de punctul P (roșu) de-a lungul medianei sau de vârful A pentru a schimba forma triunghiului. Observați cum, deși toate segmentele se modifică, relația dintre rapoarte rămâne constantă. (Notă: demonstrația din document folosește arii, dar rezultatul este despre segmente).
+        <strong>Vizualizare:</strong> Trageți de vârfurile A, B, C pentru a modifica triunghiul. Trageți de punctul verde P pentru a-l muta de-a lungul medianei. Observați cum, indiferent de configurație, egalitatea din enunț rămâne mereu adevărată.
       </p>
-      <div style={{ marginTop: '2rem' }}>
-        <AreaRatioVisualizer />
+
+      <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+        <CevaTheoremVisualizer />
       </div>
     </div>
   );
