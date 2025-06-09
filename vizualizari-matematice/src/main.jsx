@@ -18,6 +18,7 @@ import TFig01Page from './pages/TFig01Page.jsx'; // Importă pagina nouă
 import TFig06Page from './pages/TFig06Page.jsx'; // Importă pagina nouă
 import TFig08Page from './pages/TFig08Page.jsx';
 import TFig07Page from './pages/TFig07Page.jsx';
+import TFig10Page from './pages/TFig10Page.jsx';
 
 // Creăm router-ul care definește toate paginile (rutele)
 const router = createBrowserRouter([
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: 'tfig07',
         element: <TFig07Page />,
+      },
+      {
+        path: 'tfig10',
+        element: <TFig10Page />,
       }
     ],
   },
