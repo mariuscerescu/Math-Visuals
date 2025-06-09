@@ -1,18 +1,21 @@
 import React from 'react';
 import CircleMedianVisualizer from '../components/CircleMedianVisualizer';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function TFig01Page() {
+  const { t } = useLanguage();
+
   return (
     <div>
-      <h2>Card T Fig 01: Puterea punctului față de cerc</h2>
+      <h2>{t('tfig01_title')}</h2>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Problemă:</strong> Cercul circumscris triunghiului ABC intersectează prelungirea medianei BM în punctul D.
+        <strong>{t('problem_label')}</strong> {t('tfig01_problem')}
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <em>Notă: Enunțul original din document (`AB·AD = CB·CD`) pare a fi incorect. Vom demonstra o proprietate fundamentală și corectă a acestei construcții: <strong>teorema puterii punctului</strong>.</em>
+        <em>{t('tfig01_note')}</em>
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Vizualizare:</strong> Trageți de vârfurile A, B, C pentru a modifica figura. Observați cum, indiferent de forma triunghiului, produsele <strong><code>AM · MC</code></strong> și <strong><code>BM · MD</code></strong> rămân mereu egale.
+        <strong>{t('viz_label')}</strong> {t('tfig01_viz')}
       </p>
 
       <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>

@@ -1,6 +1,7 @@
 // src/components/InequalityGrapher.jsx
 
 import React, { useState } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Configurarea spațiului de vizualizare
 const width = 450;
@@ -20,6 +21,7 @@ const f_lhs = (a) => (1 + a + a**2 + a**3)**2; // Left-hand side
 const g_rhs = (a) => 4 * (1 + a**2 + a**4 + a**6); // Right-hand side
 
 function InequalityGrapher() {
+  const { t } = useLanguage();
   const [currentA, setCurrentA] = useState(1.5);
 
   // Generarea punctelor pentru grafice
@@ -66,7 +68,7 @@ function InequalityGrapher() {
         <circle cx={point_rhs_svg.x} cy={point_rhs_svg.y} r="6" fill="tomato" />
       </svg>
       <div style={{ marginTop: '1rem' }}>
-        <label htmlFor="a-slider">Valoarea lui 'a': {currentA.toFixed(2)}</label>
+        <label htmlFor="a-slider">{t('t59_slider_label')} {currentA.toFixed(2)}</label>
         <input
           type="range" id="a-slider"
           min={aMin} max={aMax} step="0.01"

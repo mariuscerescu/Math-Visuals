@@ -19,6 +19,7 @@ import TFig06Page from './pages/TFig06Page.jsx'; // Importă pagina nouă
 import TFig08Page from './pages/TFig08Page.jsx';
 import TFig07Page from './pages/TFig07Page.jsx';
 import TFig10Page from './pages/TFig10Page.jsx';
+import { LanguageProvider } from './contexts/LanguageContext.jsx';
 
 // Creăm router-ul care definește toate paginile (rutele)
 const router = createBrowserRouter([
@@ -88,6 +89,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <LanguageProvider>
+      <RouterProvider router={router} />
+    </LanguageProvider>
   </React.StrictMode>
 );

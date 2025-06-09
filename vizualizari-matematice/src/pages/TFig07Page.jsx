@@ -1,15 +1,17 @@
 import React from 'react';
 import KissingCirclesVisualizer from '../components/KissingCirclesVisualizer';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function TFig07Page() {
+    const { t } = useLanguage();
   return (
     <div>
-      <h2>Card T Fig 07: Problema celor 12 cercuri</h2>
+      <h2>{t('tfig07_title')}</h2>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Problemă:</strong> Se pot desena pe plan 12 cercuri astfel încât fiecare să fie tangentă la exact alte 5 cercuri?
+        <strong>{t('problem_label')}</strong> {t('tfig07_problem')}
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Vizualizare:</strong> Răspunsul este da. Configurația de mai jos este un exemplu. Aceasta este o proiecție stereografică a unui icosaedru, unde vârfurile devin centrele cercurilor. Plasați mouse-ul peste oricare dintre cele 12 cercuri pentru a verifica că atinge exact 5 alte cercuri (cercul exterior mare este considerat al 12-lea cerc).
+        <strong>{t('viz_label')}</strong> {t('tfig07_viz')}
       </p>
 
       <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px', display: 'flex', justifyContent: 'center' }}>

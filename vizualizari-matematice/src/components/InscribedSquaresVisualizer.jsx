@@ -1,5 +1,6 @@
 import React, { useState, useCallback } from 'react';
 import P5Canvas from './P5Canvas';
+import { useLanguage } from '../contexts/LanguageContext';
 
 // Helper component to display the results
 const ResultsDisplay = ({ sides, angles }) => {
@@ -19,6 +20,31 @@ const ResultsDisplay = ({ sides, angles }) => {
                     Triunghiul este echilateral.
                 </div>
             )}
+        </div>
+    );
+};
+
+const InfoPanel = ({ areas, vertices }) => {
+    const { t } = useLanguage();
+    const { s1, s2, s3 } = areas;
+    const isEqual = s1 && s2 && s3 && Math.abs(s1 - s2) < 1 && Math.abs(s2 - s3) < 1;
+    const isEquilateral = isEqual && Math.abs(s1 - s2) < 1 && Math.abs(s2 - s3) < 1;
+    return (
+        <div style={{ fontFamily: 'sans-serif', width: '250px', borderLeft: '1px solid #ccc', paddingLeft: '1rem' }}>
+            <h4>{t('tfig06_areas_title')}</h4>
+            <p>{t('tfig06_area1')}: {s1 ? s1.toFixed(1) : '...'}</p>
+            <p>{t('tfig06_area2')}: {s2 ? s2.toFixed(1) : '...'}</p>
+            <p>{t('tfig06_area3')}: {s3 ? s3.toFixed(1) : '...'}</p>
+            <hr />
+            <div style={{
+                marginTop: '1rem',
+                padding: '0.5rem',
+                background: isEqual ? '#e8f5e9' : '#f0f0f0',
+                borderRadius: '4px',
+                textAlign: 'center'
+            }}>
+                <strong>{isEquilateral ? t('tfig06_confirmed') : t('tfig06_unconfirmed')}</strong>
+            </div>
         </div>
     );
 };
@@ -118,9 +144,7 @@ function InscribedSquaresVisualizer() {
     return (
         <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', fontFamily: 'sans-serif' }}>
             <P5Canvas sketch={sketch} />
-            <div style={{ width: '250px', borderLeft: '1px solid #ccc', paddingLeft: '1rem' }}>
-                <ResultsDisplay sides={values.sides} angles={values.angles} />
-            </div>
+            <InfoPanel areas={values.sides} vertices={values.angles} />
         </div>
     );
 }

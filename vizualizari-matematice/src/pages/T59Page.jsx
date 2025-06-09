@@ -1,16 +1,18 @@
 import React from 'react';
 import InequalityGrapher from '../components/InequalityGrapher';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function T59Page() {
+  const { t } = useLanguage();
   return (
     <div>
-      <h2>Card T59: Demonstrarea unei inegalități</h2>
+      <h2>{t('t59_title')}</h2>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Problemă:</strong> Demonstrați inegalitatea 
-        <code> (1 + a + a² + a³)² ≤ 4(1 + a² + a⁴ + a⁶)</code>.
+        <strong>{t('problem_label')}</strong> 
+        <code> {t('t59_problem')}</code>
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Vizualizare:</strong> Mai jos sunt reprezentate grafic cele două funcții, cea din stânga (albastră) și cea din dreapta (roșie). Puteți vedea că graficul albastru se află mereu sub sau atinge graficul roșu. Folosiți slider-ul pentru a alege o valoare pentru 'a' și a compara valorile numerice ale funcțiilor în acel punct.
+        <strong>{t('viz_label')}</strong> {t('t59_viz')}
       </p>
 
       <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>

@@ -1,6 +1,7 @@
 // src/components/TrigFromTangentVisualizer.jsx
 
 import React, { useState, useMemo } from 'react';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const width = 500;
 const height = 500;
@@ -8,6 +9,7 @@ const origin = { x: width / 2, y: height / 2 };
 const radius = 200; // Raza cercului în pixeli SVG
 
 function TrigFromTangentVisualizer({ tangent }) {
+  const { t } = useLanguage();
   const [hoveredPoint, setHoveredPoint] = useState(null);
 
   // useMemo va recalcula punctele doar dacă tangenta se schimbă
@@ -84,13 +86,13 @@ function TrigFromTangentVisualizer({ tangent }) {
       </svg>
       
       <div style={{ width: '250px' }}>
-        <h3>Soluții Posibile</h3>
-        <p>Pentru <strong>tan(α) = {tangent.toFixed(3)}</strong>, există două soluții:</p>
+        <h3>{t('t47_solutions_title')}</h3>
+        <p>{t('t47_solutions_intro')} <strong>tan(α) = {tangent.toFixed(3)}</strong>, {t('t47_solutions_exist')}</p>
         <div 
           onMouseEnter={() => setHoveredPoint(2)} onMouseLeave={() => setHoveredPoint(null)}
           style={{padding: '0.5rem', borderRadius: '4px', background: hoveredPoint === 2 ? 'lightyellow' : 'transparent'}}
         >
-          <strong>Soluția 1 (Cadran II):</strong>
+          <strong>{t('t47_solution1')}</strong>
           <p>sin(α) = {points[1].sin.toFixed(4)}</p>
           <p>cos(α) = {points[1].cos.toFixed(4)}</p>
         </div>
@@ -98,7 +100,7 @@ function TrigFromTangentVisualizer({ tangent }) {
           onMouseEnter={() => setHoveredPoint(1)} onMouseLeave={() => setHoveredPoint(null)}
           style={{padding: '0.5rem', borderRadius: '4px', background: hoveredPoint === 1 ? 'lightyellow' : 'transparent'}}
         >
-          <strong>Soluția 2 (Cadran IV):</strong>
+          <strong>{t('t47_solution2')}</strong>
           <p>sin(α) = {points[0].sin.toFixed(4)}</p>
           <p>cos(α) = {points[0].cos.toFixed(4)}</p>
         </div>

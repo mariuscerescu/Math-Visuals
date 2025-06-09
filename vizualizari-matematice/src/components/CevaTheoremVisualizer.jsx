@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import P5Canvas from './P5Canvas';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ResultsDisplay = ({ values }) => {
+    const { t } = useLanguage();
     const { ratio1, ratio2 } = values;
     const checkValue = 2 * ratio2;
     const isEqual = ratio1 && ratio2 && Math.abs(ratio1 - checkValue) < 0.05;
@@ -19,7 +21,7 @@ const ResultsDisplay = ({ values }) => {
                 borderRadius: '4px',
                 textAlign: 'center'
             }}>
-                <strong>{isEqual ? '✓ Egalitate confirmată!' : 'Calculare...'}</strong>
+                <strong>{isEqual ? t('tfig08_confirmed') : t('tfig08_calculating')}</strong>
             </div>
         </>
     );

@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import TrigFromTangentVisualizer from '../components/TrigFromTangentVisualizer';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const examples = [
   { label: 'tan(α) = -5/12', value: -5 / 12 },
@@ -11,20 +12,21 @@ const examples = [
 ];
 
 function T47Page() {
+  const { t } = useLanguage();
   const [activeExample, setActiveExample] = useState(examples[0]);
 
   return (
     <div>
-      <h2>Card T47: Găsirea sin(α) și cos(α) din tan(α)</h2>
+      <h2>{t('t47_title')}</h2>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Problemă:</strong> Cunoscând valoarea tangentei unui unghi, găsiți valorile posibile pentru sinus și cosinus.
+        <strong>{t('problem_label')}</strong> {t('t47_problem')}
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Vizualizare:</strong> Pe cercul trigonometric, o valoare a tangentei corespunde unei drepte care trece prin origine. Această dreaptă intersectează cercul în două puncte. Coordonatele acestor puncte `(cos, sin)` reprezintă cele două soluții posibile. Plasați mouse-ul peste puncte sau peste text pentru a vedea detaliile.
+        <strong>{t('viz_label')}</strong> {t('t47_viz')}
       </p>
 
       <div style={{ margin: '1rem 0' }}>
-        <strong>Selectați un exemplu:</strong>
+        <strong>{t('t47_select_example')}</strong>
         {examples.map((ex, index) => (
           <button 
             key={index} 

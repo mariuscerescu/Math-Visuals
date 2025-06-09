@@ -1,18 +1,20 @@
 import React from 'react';
 import SimsonTheoremVisualizer from '../components/SimsonTheoremVisualizer';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function TFig10Page() {
+    const { t } = useLanguage();
   return (
     <div>
-      <h2>Card T Fig 10: Teorema lui Simson generalizată</h2>
+      <h2>{t('tfig10_title')}</h2>
       <p style={{ maxWidth: '800px' }}>
-        <strong>Problemă:</strong> Fie M un punct pe cercul circumscris unui triunghi ABC. Notăm cu `a, b, c` distanțele de la M la laturile BC, CA, AB și cu `x, y, z` distanțele la tangentele duse prin A, B, C.
+        <strong>{t('problem_label')}</strong> {t('tfig10_problem')}
       </p>
        <p style={{ maxWidth: '800px' }}>
-        <em>Notă: Enunțul original din document este probabil o eroare de tipar. Vom demonstra o teoremă corectă și elegantă legată de această configurație: distanța la o latură este media geometrică a distanțelor la tangentele din vârfurile acelei laturi.</em>
+        <em>{t('tfig10_note')}</em>
       </p>
       <p style={{ maxWidth: '800px' }}>
-        <strong>Vizualizare:</strong> Trageți de vârfurile A, B, C pentru a modifica triunghiul sau de punctul verde M pentru a-l deplasa pe cerc. Observați cum, indiferent de configurație, perechile de produse (`xy` și `c²`, `yz` și `a²`, `zx` și `b²`) rămân mereu egale.
+        <strong>{t('viz_label')}</strong> {t('tfig10_viz')}
       </p>
 
       <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>

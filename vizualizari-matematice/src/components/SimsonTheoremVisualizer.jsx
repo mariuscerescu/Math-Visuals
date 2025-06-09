@@ -1,7 +1,9 @@
 import React, { useState, useCallback } from 'react';
 import P5Canvas from './P5Canvas';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const ResultsDisplay = ({ values }) => {
+    const { t } = useLanguage();
     const { a, b, c, x, y, z } = values;
     const p1 = x * y, s1 = c * c;
     const p2 = y * z, s2 = a * a;
@@ -24,11 +26,11 @@ const ResultsDisplay = ({ values }) => {
     return (
         <div style={{ width: '300px', borderLeft: '1px solid #ccc', paddingLeft: '1rem' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
-                <div><strong>Laturi:</strong><br/>a: {a?.toFixed(2)}<br/>b: {b?.toFixed(2)}<br/>c: {c?.toFixed(2)}</div>
-                <div><strong>Tangente:</strong><br/>x: {x?.toFixed(2)}<br/>y: {y?.toFixed(2)}<br/>z: {z?.toFixed(2)}</div>
+                <div><strong>{t('tfig10_sides')}</strong><br/>a: {a?.toFixed(2)}<br/>b: {b?.toFixed(2)}<br/>c: {c?.toFixed(2)}</div>
+                <div><strong>{t('tfig10_tangents')}</strong><br/>x: {x?.toFixed(2)}<br/>y: {y?.toFixed(2)}<br/>z: {z?.toFixed(2)}</div>
             </div>
             <hr/>
-            <h4>Verificare Relații:</h4>
+            <h4>{t('tfig10_relations')}</h4>
             <StyleBox isOk={check(p1, s1)}>x·y = {p1?.toFixed(1)} | c² = {s1?.toFixed(1)}</StyleBox>
             <StyleBox isOk={check(p2, s2)}>y·z = {p2?.toFixed(1)} | a² = {s2?.toFixed(1)}</StyleBox>
             <StyleBox isOk={check(p3, s3)}>z·x = {p3?.toFixed(1)} | b² = {s3?.toFixed(1)}</StyleBox>
@@ -39,6 +41,7 @@ const ResultsDisplay = ({ values }) => {
 
 function SimsonTheoremVisualizer() {
     const [values, setValues] = useState({});
+    const { t } = useLanguage();
 
     const sketch = useCallback((p) => {
         let vertices = [];
@@ -84,7 +87,7 @@ function SimsonTheoremVisualizer() {
             
             if (!center) {
                 p.fill('red').textSize(16).textAlign(p.CENTER);
-                p.text("Vârfuri coliniare!", p.width/2, p.height/2);
+                p.text(t('tfig10_collinear'), p.width/2, p.height/2);
                 p.triangle(A.x, A.y, B.x, B.y, C.x, C.y);
                 p.fill('royalblue'); vertices.forEach(v => p.circle(v.x, v.y, 10));
                 return;
@@ -133,7 +136,7 @@ function SimsonTheoremVisualizer() {
                 });
             }
         };
-    }, []);
+    }, [t]);
 
     return (
         <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', fontFamily: 'sans-serif' }}>

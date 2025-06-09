@@ -1,27 +1,29 @@
 // src/components/Navbar.jsx
 
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
+import { useLanguage } from '../contexts/LanguageContext';
+import LanguageSwitcher from './LanguageSwitcher';
 
 function Navbar() {
+  const { t } = useLanguage();
+
   return (
     <nav className="navbar">
-      <Link to="/" className="nav-brand">Acasă</Link>
+      <Link to="/" className="nav-brand">{t('home')}</Link>
       <ul className="nav-links">
-        <li><Link to="/td04">TD04</Link></li>
-        <li><Link to="/td20">TD20</Link></li>
-        <li><Link to="/t46">T46</Link></li>
-        <li><Link to="/t47">T47</Link></li>
-        <li><Link to="/t48">T48</Link></li>
-        <li><Link to="/t53">T53</Link></li>
-        <li><Link to="/t55">T55</Link></li>
-        <li><Link to="/t59">T59</Link></li>
-        <li><Link to="/tfig01">T.Fig.01</Link></li>
-        <li><Link to="/tfig06">T.Fig.06</Link></li>
-        <li><Link to="/tfig08">T.Fig.08</Link></li>
-        <li><Link to="/tfig07">T.Fig.07</Link></li>
-        <li><Link to="/tfig10">T.Fig.10</Link></li>
+        <li><Link to="/t47">{t('p_t47')}</Link></li>
+        <li><Link to="/t59">{t('p_t59')}</Link></li>
+        <li><Link to="/t55">{t('p_t55')}</Link></li>
+        <li><Link to="/td04">{t('p_td04')}</Link></li>
+        <li><Link to="/tfig01">{t('p_tfig01')}</Link></li>
+        <li><Link to="/tfig06">{t('p_tfig06')}</Link></li>
+        <li><Link to="/tfig07">{t('p_tfig07')}</Link></li>
+        <li><Link to="/tfig08">{t('p_tfig08')}</Link></li>
+        <li><Link to="/tfig10">{t('p_tfig10')}</Link></li>
       </ul>
+      <LanguageSwitcher />
     </nav>
   );
 }
