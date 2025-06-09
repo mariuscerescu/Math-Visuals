@@ -20,17 +20,15 @@ function TriangleAltitudes() {
     const findCevianFoot = (P, V1, V2, V_anchor, targetAngle) => {
       let bestPoint = V1.copy();
       let minError = Infinity;
-      const numSteps = 100; // Suficientă precizie pentru vizualizare
+      const numSteps = 100;
 
       for (let i = 0; i <= numSteps; i++) {
         const t = i / numSteps;
         const currentPoint = p5.Vector.lerp(V1, V2, t);
 
-        // Calculăm unghiul în punctul curent
         const v1 = p5.Vector.sub(P, currentPoint);
         const v2 = p5.Vector.sub(V_anchor, currentPoint);
         
-        // Verificăm să nu fie vectori nuli
         if (v1.magSq() < 1e-6 || v2.magSq() < 1e-6) continue;
 
         const dot = v1.dot(v2);
@@ -46,7 +44,6 @@ function TriangleAltitudes() {
       }
       return bestPoint;
     };
-
 
     p.setup = () => {
       p.createCanvas(500, 450);
@@ -84,14 +81,13 @@ function TriangleAltitudes() {
 
       const [A, B, C] = vertices;
       
-      // unghiurile sunt ∠AA₁C, ∠BB₁A, ∠CC₁B
       const A1 = findCevianFoot(A, B, C, C, targetAngleRad);
       const B1 = findCevianFoot(B, C, A, A, targetAngleRad);
       const C1 = findCevianFoot(C, A, B, B, targetAngleRad);
       
-      const isAltitude = Math.abs(angleSlider.value() - 90) < 1.5; // Toleranță mai mare
+      const isAltitude = Math.abs(angleSlider.value() - 90) < 0.5;
 
-      // Desenarea
+      // Desenarea triunghiului
       p.stroke(0); p.strokeWeight(1); p.noFill();
       p.triangle(A.x, A.y, B.x, B.y, C.x, C.y);
       p.fill(0); p.noStroke();
@@ -99,12 +95,14 @@ function TriangleAltitudes() {
       p.text('B', B.x + 5, B.y + 15);
       p.text('C', C.x, C.y - 10);
 
+      // Desenează cevienele
       p.strokeWeight(isAltitude ? 2.5 : 1.5);
       p.stroke(isAltitude ? 'green' : 'tomato');
       p.line(A.x, A.y, A1.x, A1.y);
       p.line(B.x, B.y, B1.x, B1.y);
       p.line(C.x, C.y, C1.x, C1.y);
       
+      // Desenează picioarele cevienelor
       p.fill(isAltitude ? 'green' : 'tomato'); p.noStroke();
       p.ellipse(A1.x, A1.y, 7);
       p.ellipse(B1.x, B1.y, 7);
@@ -115,11 +113,13 @@ function TriangleAltitudes() {
       p.text('B1', B1.x - 20, B1.y - 5);
       p.text('C1', C1.x + 5, C1.y - 5);
       
+      // Desenează vârfurile
       p.fill('royalblue'); p.stroke(0); p.strokeWeight(1);
       for(let v of vertices) {
           p.ellipse(v.x, v.y, 12);
       }
       
+      // Afișează textul
       p.fill(0); p.noStroke(); p.textSize(16);
       p.text(`Unghiul comun: ${angleSlider.value()}°`, 10, 30);
       if(isAltitude) {
