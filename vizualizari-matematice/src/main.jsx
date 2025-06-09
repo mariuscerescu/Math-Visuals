@@ -10,6 +10,7 @@ import T46Page from './pages/T46Page.jsx';
 import T47Page from './pages/T47Page.jsx'; // Importă pagina nouă
 import T48Page from './pages/T48Page.jsx';
 import T53Page from './pages/T53Page.jsx'; // Importă pagina nouă
+import T59Page from './pages/T59Page.jsx'; // Importă pagina nouă
 
 // Creăm router-ul care definește toate paginile (rutele)
 const router = createBrowserRouter([
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: 't53',
         element: <T53Page />,
+      },
+      {
+        path: 't59',
+        element: <T59Page />,
       },
     ],
   },
