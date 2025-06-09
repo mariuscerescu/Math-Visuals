@@ -16,6 +16,7 @@ function Navbar() {
         <li><Link to="/t53">Problema T53</Link></li>
         <li><Link to="/t55">Problema T55</Link></li>
         <li><Link to="/t59">Problema T59</Link></li>
+        <li><Link to="/tfig01">Problema T.Fig.01</Link></li>
       </ul>
     </nav>
   );
