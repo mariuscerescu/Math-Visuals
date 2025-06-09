@@ -1,18 +1,19 @@
 import React from 'react';
-import TwelveCircles from '../components/TwelveCircles';
+import KissingCirclesVisualizer from '../components/KissingCirclesVisualizer';
 
 function TFig07Page() {
   return (
     <div>
-      <h2>Card T Fig 07: 12 Cercuri pe un plan</h2>
+      <h2>Card T Fig 07: Problema celor 12 cercuri</h2>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Problemă:</strong> Este posibil să se deseneze 12 cercuri pe un plan astfel încât fiecare să fie tangentă la exact alte 5 cercuri?
+        <strong>Problemă:</strong> Se pot desena pe plan 12 cercuri astfel încât fiecare să fie tangentă la exact alte 5 cercuri?
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Răspuns (Vizualizare):</strong> Da, este posibil. Imaginea de mai jos, preluată din document, prezintă o astfel de configurație. Aceasta este o problemă celebră legată de "numărul sărutului" (kissing number) în 2D. Configurația este adesea legată de proiecția vârfurilor unui icosaedru pe un plan.
+        <strong>Vizualizare:</strong> Răspunsul este da. Configurația de mai jos este un exemplu. Aceasta este o proiecție stereografică a unui icosaedru, unde vârfurile devin centrele cercurilor. Plasați mouse-ul peste oricare dintre cele 12 cercuri pentru a verifica că atinge exact 5 alte cercuri (cercul exterior mare este considerat al 12-lea cerc).
       </p>
-      <div style={{ marginTop: '2rem', maxWidth: '500px' }}>
-         <TwelveCircles />
+
+      <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px', display: 'flex', justifyContent: 'center' }}>
+        <KissingCirclesVisualizer />
       </div>
     </div>
   );
