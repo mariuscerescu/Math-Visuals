@@ -6,12 +6,13 @@ function TFig06Page() {
     <div>
       <h2>Card T Fig 06: Pătrate înscrise egale</h2>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Problemă:</strong> Toate pătratele înscrise în triunghi (cu o latură pe o latură a triunghiului) s-au dovedit a fi egale. Găsiți unghiurile triunghiului.
+        <strong>Problemă:</strong> Toate pătratele care pot fi înscrise într-un triunghi (cu o latură pe o latură a triunghiului) sunt egale. Găsiți unghiurile triunghiului.
       </p>
       <p style={{ maxWidth: '700px' }}>
-        <strong>Vizualizare:</strong> Folosiți sliderele pentru a schimba unghiurile de la bază ale triunghiului. Observați cum se modifică dimensiunile celor trei pătrate înscrise. Pătratele devin egale doar atunci când toate unghiurile sunt de 60°, adică triunghiul este echilateral.
+        <strong>Vizualizare:</strong> Trageți de vârfurile A, B, C pentru a modifica forma triunghiului. Veți vedea cele trei pătrate înscrise posibile, fiecare cu baza pe o altă latură. Observați cum se modifică dimensiunile lor și unghiurile triunghiului. Încercați să faceți pătratele egale.
       </p>
-      <div style={{ marginTop: '2rem' }}>
+
+      <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
         <InscribedSquaresVisualizer />
       </div>
     </div>

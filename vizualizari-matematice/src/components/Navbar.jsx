@@ -8,15 +8,16 @@ function Navbar() {
     <nav className="navbar">
       <Link to="/" className="nav-brand">Acasă</Link>
       <ul className="nav-links">
-        <li><Link to="/td04">Problema TD04</Link></li>
-        <li><Link to="/td20">Problema TD20</Link></li>
-        <li><Link to="/t46">Problema T46</Link></li>
-        <li><Link to="/t47">Problema T47</Link></li>
-        <li><Link to="/t48">Problema T48</Link></li>
-        <li><Link to="/t53">Problema T53</Link></li>
-        <li><Link to="/t55">Problema T55</Link></li>
-        <li><Link to="/t59">Problema T59</Link></li>
-        <li><Link to="/tfig01">Problema T.Fig.01</Link></li>
+        <li><Link to="/td04">TD04</Link></li>
+        <li><Link to="/td20">TD20</Link></li>
+        <li><Link to="/t46">T46</Link></li>
+        <li><Link to="/t47">T47</Link></li>
+        <li><Link to="/t48">T48</Link></li>
+        <li><Link to="/t53">T53</Link></li>
+        <li><Link to="/t55">T55</Link></li>
+        <li><Link to="/t59">T59</Link></li>
+        <li><Link to="/tfig01">T.Fig.01</Link></li>
+        <li><Link to="/tfig06">Problema T.Fig.06</Link></li>
       </ul>
     </nav>
   );
