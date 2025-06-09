@@ -7,6 +7,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from './App.jsx';
 import HomePage from './pages/HomePage.jsx';
 import TD04Page from './pages/TD04Page.jsx'; // Importă pagina nouă
+import TD20Page from './pages/TD20Page.jsx'; // Importă pagina nouă
 import T46Page from './pages/T46Page.jsx';
 import T47Page from './pages/T47Page.jsx';
 import T48Page from './pages/T48Page.jsx';
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: 'td04',
         element: <TD04Page />,
+      },
+      {
+        path: 'td20',
+        element: <TD20Page />,
       },
       {
         path: 't46',

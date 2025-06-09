@@ -9,6 +9,7 @@ function Navbar() {
       <Link to="/" className="nav-brand">Acasă</Link>
       <ul className="nav-links">
         <li><Link to="/td04">Problema TD04</Link></li>
+        <li><Link to="/td20">Problema TD20</Link></li>
         <li><Link to="/t46">Problema T46</Link></li>
         <li><Link to="/t47">Problema T47</Link></li>
         <li><Link to="/t48">Problema T48</Link></li>
