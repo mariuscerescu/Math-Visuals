@@ -17,11 +17,11 @@ function Navbar() {
         <li><Link to="/t59">{t('p_t59')}</Link></li>
         <li><Link to="/t55">{t('p_t55')}</Link></li>
         <li><Link to="/td04">{t('p_td04')}</Link></li>
-        <li><Link to="/tfig01">{t('p_tfig01')}</Link></li>
-        <li><Link to="/tfig06">{t('p_tfig06')}</Link></li>
+        <li><a href="/tfig01">{t('p_tfig01')}</a></li>
+        <li><a href="/tfig06">{t('p_tfig06')}</a></li>
         <li><Link to="/tfig07">{t('p_tfig07')}</Link></li>
-        <li><Link to="/tfig08">{t('p_tfig08')}</Link></li>
-        <li><Link to="/tfig10">{t('p_tfig10')}</Link></li>
+        <li><a href="/tfig08">{t('p_tfig08')}</a></li>
+        <li><a href="/tfig10">{t('p_tfig10')}</a></li>
       </ul>
       <LanguageSwitcher />
     </nav>
