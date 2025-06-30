@@ -22,6 +22,10 @@ function Navbar() {
         <li><Link to="/tfig07">{t('p_tfig07')}</Link></li>
         <li><Link to="/tfig08">{t('p_tfig08')}</Link></li>
         <li><Link to="/tfig10">{t('p_tfig10')}</Link></li>
+        <li><Link to="/td20">{t('p_td20')}</Link></li>
+        <li><Link to="/t46">{t('p_t46')}</Link></li>
+        <li><Link to="/t48">{t('p_t48')}</Link></li>
+        <li><Link to="/t53">{t('p_t53')}</Link></li>
       </ul>
       <LanguageSwitcher />
     </nav>
