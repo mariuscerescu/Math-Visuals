@@ -62,7 +62,7 @@
     "tfig10_collinear": "Vârfuri coliniare!",
 
     "td04_title": "Card TD04: Problema cu progresia geometrică",
-    "td04_problem": "Cinci elevi rezolvă pe rând câte un exemplu din tabla înmulțirii. Rezultatul fiecăruia este de 1.5 ori mai mare decât al precedentului. Ce numere a înmulțit al patrulea elev, Ivan?",
+    "td04_problem": "Elevii Petre, Colea, Vasile, Ivan și Mihai au rezolvat pe rând câte un exemplu din tabla înmulțirii. Rezultatul fiecăruia a fost de 1,5 ori mai mare decât al celui precedent. Ce numere a înmulțit Ivan?",
     "td04_viz": "Problema se reduce la găsirea unui număr de start 'x' pentru o progresie geometrică cu 5 termeni și rația 1.5, astfel încât toți termenii să fie numere întregi în limitele tablei înmulțirii (1-81). Folosiți unealta de mai jos pentru a testa diferite valori de start 'x'.",
     
     "td04_test_start_value": "Testarea valorii de start (rezultatul lui Petia)",
@@ -103,15 +103,5 @@
     "t59_title": "Card T59: Demonstrarea unei inegalități",
     "t59_problem": "Demonstrați inegalitatea (1 + a + a² + a³)² ≤ 4(1 + a² + a⁴ + a⁶).",
     "t59_viz": "Mai jos sunt reprezentate grafic cele două funcții, cea din stânga (albastră) și cea din dreapta (roșie). Puteți vedea că graficul albastru se află mereu sub sau atinge graficul roșu. Folosiți slider-ul pentru a alege o valoare pentru 'a' și a compara valorile numerice ale funcțiilor în acel punct.",
-    "t59_slider_label": "Valoarea lui 'a':",
-
-    "t47_title": "Card T47: Găsirea sin(α) și cos(α) din tan(α)",
-    "t47_problem": "Cunoscând valoarea tangentei unui unghi, găsiți valorile posibile pentru sinus și cosinus.",
-    "t47_viz": "Pe cercul trigonometric, o valoare a tangentei corespunde unei drepte care trece prin origine. Această dreaptă intersectează cercul în două puncte. Coordonatele acestor puncte `(cos, sin)` reprezintă cele două soluții posibile. Plasați mouse-ul peste puncte sau peste text pentru a vedea detaliile.",
-    "t47_select_example": "Selectați un exemplu:",
-    "t47_solutions_title": "Soluții Posibile",
-    "t47_solutions_intro": "Pentru",
-    "t47_solutions_exist": "există două soluții:",
-    "t47_solution1": "Soluția 1 (Cadran II):",
-    "t47_solution2": "Soluția 2 (Cadran IV):"
+    "t59_slider_label": "Valoarea lui 'a':"
 } 
