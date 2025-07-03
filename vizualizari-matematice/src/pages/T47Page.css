@@ -1,0 +1,27 @@
+.button-group {
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.example-button {
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: all 0.2s ease-in-out;
+}
+
+.example-button:hover {
+  border-color: #888;
+}
+
+.example-button.active {
+  background-color: #333;
+  color: #fff;
+  border-color: #333;
+} 
