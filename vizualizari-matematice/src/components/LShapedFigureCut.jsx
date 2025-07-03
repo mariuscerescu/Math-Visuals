@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { useLanguage } from '../contexts/LanguageContext';
 
 function ChickenSaleSolver() {
-  const { t } = useLanguage();
   const [n, setN] = useState(6);
   const [log, setLog] = useState([]);
   const [isFinished, setIsFinished] = useState(false);
@@ -12,10 +10,10 @@ function ChickenSaleSolver() {
     const tens = Math.floor(totalIncome / 10);
     const remainder = totalIncome % 10;
     
-    let newLog = [`${t('td20_log_total_income')} ${n} ${t('td20_log_chickens')} × ${n} ${t('td20_log_currency')} = ${totalIncome} ${t('td20_log_currency')}.`];
+    let newLog = [`Venit total: ${n} pui × ${n} lei = ${totalIncome} lei.`];
     
     if (tens % 2 === 0) {
-      newLog.push(`❌ ${t('td20_log_error_even_tens')}`);
+      newLog.push("❌ EROARE: Numărul de zeci este par. Conform problemei, fratele mai mic nu ar fi cel care primește restul. Încercați un 'n' care se termină în 4 sau 6 (ex: 4, 6, 14, 16...).");
       setLog(newLog);
       setIsFinished(false);
       return;
@@ -25,47 +23,48 @@ function ChickenSaleSolver() {
     let youngerBrother = 0;
     let turn = 'elder';
 
-    newLog.push(`--- ${t('td20_log_division_starts')} ---`);
+    newLog.push("--- Începe împărțirea ---");
 
     for (let i = 0; i < tens; i++) {
       if (turn === 'elder') {
         elderBrother += 10;
-        newLog.push(`${t('td20_log_elder_takes')} (E: ${elderBrother}, Y: ${youngerBrother})`);
+        newLog.push(`Fratele Mare ia 10 lei. (Mare: ${elderBrother}, Mic: ${youngerBrother})`);
         turn = 'younger';
       } else {
         youngerBrother += 10;
-        newLog.push(`${t('td20_log_younger_takes')} (E: ${elderBrother}, Y: ${youngerBrother})`);
+        newLog.push(`Fratele Mic ia 10 lei. (Mare: ${elderBrother}, Mic: ${youngerBrother})`);
         turn = 'elder';
       }
     }
 
-    newLog.push(`${t('td20_log_remainder_is')} ${remainder} ${t('td20_log_currency')}.`);
+    newLog.push(`Au rămas ${remainder} lei.`);
     youngerBrother += remainder;
-    newLog.push(`${t('td20_log_younger_takes_rest')} ${remainder} ${t('td20_log_currency')}.`);
-    newLog.push(`--- ${t('td20_log_division_ends')} ---`);
-    newLog.push(`${t('td20_log_final_result')} E: ${elderBrother}, Y: ${youngerBrother}.`);
+    newLog.push(`Fratele Mic ia restul de ${remainder} lei.`);
+    newLog.push("--- Împărțire finalizată ---");
+    newLog.push(`Rezultat final: Fratele Mare are ${elderBrother} lei, Fratele Mic are ${youngerBrother} lei.`);
 
     const difference = elderBrother - youngerBrother;
     const knifePrice = difference / 2;
 
-    newLog.push(`--- ${t('td20_log_knife_price_calc')} ---`);
-    newLog.push(`${t('td20_log_difference_is')} ${difference} ${t('td20_log_currency')}.`);
-    newLog.push(`${t('td20_log_to_equalize')}`);
-    newLog.push(`${t('td20_log_knife_price_is')} = ${difference} / 2 = ${knifePrice} ${t('td20_log_currency')}.`);
+    newLog.push("--- Calculul prețului cuțitului ---");
+    newLog.push(`Diferența dintre ei este de ${difference} lei.`);
+    newLog.push("Pentru a fi egal, Marele trebuie să-i dea Micului jumătate din diferență.");
+    newLog.push(`Prețul cuțitului = ${difference} / 2 = ${knifePrice} lei.`);
     
     setLog(newLog);
     setIsFinished(true);
   };
 
+  // Rulează simularea la încărcare sau când se schimbă n
   useEffect(() => {
     runSimulation();
-  }, [n, t]);
+  }, [n]);
 
   return (
     <div style={{ fontFamily: 'sans-serif' }}>
-      <h3>{t('td20_solver_title')}</h3>
+      <h3>Logica problemei și simulatorul</h3>
       <div style={{ marginBottom: '1.5rem' }}>
-        <label htmlFor="n-input" style={{ marginRight: '1rem' }}><strong>{t('td20_n_label')}</strong></label>
+        <label htmlFor="n-input" style={{ marginRight: '1rem' }}><strong>Numărul de pui 'n':</strong></label>
         <input
           id="n-input"
           type="number"
@@ -73,11 +72,11 @@ function ChickenSaleSolver() {
           onChange={(e) => setN(parseInt(e.target.value, 10) || 0)}
           style={{ padding: '0.5rem', fontSize: '1.2rem', width: '100px' }}
         />
-         <span style={{ marginLeft: '1rem' }}>{t('td20_total_income_label')} <strong>{n*n}</strong></span>
+         <span style={{ marginLeft: '1rem' }}>Venit total (n²): <strong>{n*n}</strong></span>
       </div>
       
       <div style={{ background: '#f5f5f5', padding: '1rem', borderRadius: '8px', minHeight: '300px' }}>
-        <h4>{t('td20_log_title')}</h4>
+        <h4>Jurnal de împărțire:</h4>
         {log.map((entry, index) => (
           <p key={index} style={{ margin: '0.3rem 0', borderBottom: '1px solid #eee' }}>{entry}</p>
         ))}

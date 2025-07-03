@@ -1,16 +1,18 @@
 import React from 'react';
 import ChickenSaleSolver from '../components/ChickenSaleSolver';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function TD20Page() {
+  const { t } = useLanguage();
   return (
     <div>
-      <h2 className="page-title">Card TD20: Problema cuțitului</h2>
+      <h2 className="page-title">{t('td20_title')}</h2>
       <div className="page-section">
         <p className="problem-statement">
-          <strong className="section-label">Problemă:</strong> Doi frați vând 'n' pui cu 'n' lei bucata. Își împart banii luând pe rând câte 10 lei. La final, fratele mai mic, căruia îi venea rândul, nu mai are 10 lei de luat și ia restul. Pentru a echilibra împărțirea, el ia un cuțit de la fratele mai mare. Cât costă cuțitul?
+          <strong className="section-label">{t('problem_label')}</strong> {t('td20_problem')}
         </p>
         <p className="visualization-description">
-          <strong className="section-label">Rezolvare interactivă:</strong> Cheia problemei este că venitul total (`n²`) trebuie să aibă un număr impar de zeci. Introduceți mai jos o valoare pentru 'n' (ex: 6) și urmăriți pas cu pas logica împărțirii banilor și calculul final al prețului cuțitului.
+          <strong className="section-label">{t('viz_label_interactive')}</strong> {t('td20_viz')}
         </p>
       </div>
 
