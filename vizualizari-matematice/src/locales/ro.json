@@ -97,7 +97,8 @@
     "t55_final_solution_p2": "ceea ce ne dă",
     "t55_final_solution_p3": "Reconstruim numărul original:",
     "t55_final_solution_p4": "Număr = 10 * x + n = 10 * 221 + 7 =",
-    "t55_final_solution_p5": "Verificare: 2217 - 221 = 1996. Corect!",
+    "t55_final_solution_p5_check": "Verificare: 2217 - 221 = 1996.",
+    "t55_final_solution_p5_result": "Corect!",
 
     "t59_title": "Card T59: Demonstrarea unei inegalități",
     "t59_problem": "Demonstrați inegalitatea (1 + a + a² + a³)² ≤ 4(1 + a² + a⁴ + a⁶).",

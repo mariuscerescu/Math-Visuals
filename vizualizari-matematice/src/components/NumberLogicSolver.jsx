@@ -52,7 +52,10 @@ function NumberLogicSolver() {
           <p>{t('t55_final_solution_p1')} <strong>n = 7</strong>, {t('t55_final_solution_p2')} <strong>x = 221</strong>.</p>
           <p>{t('t55_final_solution_p3')}</p>
           <p>{t('t55_final_solution_p4')} <strong>2217</strong>.</p>
-          <p>{t('t55_final_solution_p5')}</p>
+          <p>
+            {t('t55_final_solution_p5_check')}{' '}
+            <strong>{t('t55_final_solution_p5_result')}</strong>
+          </p>
         </div>
       );
     }
