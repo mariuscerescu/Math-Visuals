@@ -2,28 +2,6 @@ import React, { useState, useCallback } from 'react';
 import P5Canvas from './P5Canvas';
 import { useLanguage } from '../contexts/LanguageContext';
 
-// Helper component to display the results
-const ResultsDisplay = ({ sides, angles }) => {
-    const allEqual = sides.a && Math.abs(sides.a - sides.b) < 1 && Math.abs(sides.b - sides.c) < 1;
-    return (
-        <div>
-            <p style={{ color: 'rgba(255, 99, 71, 1)' }}>Pătrat pe latura c (AB): {sides.c ? sides.c.toFixed(1) : '...'}</p>
-            <p style={{ color: 'rgba(100, 149, 237, 1)' }}>Pătrat pe latura a (BC): {sides.a ? sides.a.toFixed(1) : '...'}</p>
-            <p style={{ color: 'rgba(60, 179, 113, 1)' }}>Pătrat pe latura b (CA): {sides.b ? sides.b.toFixed(1) : '...'}</p>
-            <hr />
-            <p>∠A = {angles.A ? angles.A.toFixed(1) : '...'}°</p>
-            <p>∠B = {angles.B ? angles.B.toFixed(1) : '...'}°</p>
-            <p>∠C = {angles.C ? angles.C.toFixed(1) : '...'}°</p>
-            {allEqual && (
-                <div style={{ marginTop: '1rem', padding: '0.5rem', background: '#e8f5e9', border: '1px solid green', borderRadius: '4px', textAlign: 'center' }}>
-                    <strong>Pătratele sunt egale!</strong><br />
-                    Triunghiul este echilateral.
-                </div>
-            )}
-        </div>
-    );
-};
-
 const InfoPanel = ({ sides, vertices }) => {
     const { t } = useLanguage();
     const { a, b, c } = sides;
@@ -56,33 +34,57 @@ function InscribedSquaresVisualizer() {
         let vertices = [];
         let draggingVertex = -1;
 
-        const drawInscribedSquare = (p1, p2, p3, color) => { // Base p1-p2, opposite vertex p3
+        // The core drawing function, now corrected
+        const drawInscribedSquare = (p1, p2, p3, color) => {
             const baseVec = p.constructor.Vector.sub(p2, p1);
             const baseLen = baseVec.mag();
-            if (baseLen < 1) return 0;
+            if (baseLen < 1) return { s: 0 };
 
             const area = Math.abs((p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y)) / 2;
             const h = (2 * area) / baseLen;
-            if (h < 1) return 0;
-
+            if (h < 1) return { s: 0 };
+            
             const s = (baseLen * h) / (baseLen + h);
-
-            const v_top1 = p.constructor.Vector.lerp(p3, p1, s / h);
-            const v_top2 = p.constructor.Vector.lerp(p3, p2, s / h);
+            if (s < 1) return s;
 
             const baseNormal = baseVec.copy().normalize();
-            const vec_p1_vtop1 = p.constructor.Vector.sub(v_top1, p1);
-            const proj1 = baseNormal.copy().mult(vec_p1_vtop1.dot(baseNormal));
-            const v_bot1 = p.constructor.Vector.add(p1, proj1);
+            const basePerp = p.createVector(-baseNormal.y, baseNormal.x);
 
-            const vec_p1_vtop2 = p.constructor.Vector.sub(v_top2, p1);
-            const proj2 = baseNormal.copy().mult(vec_p1_vtop2.dot(baseNormal));
-            const v_bot2 = p.constructor.Vector.add(p1, proj2);
+            const midBase = p.constructor.Vector.lerp(p1, p2, 0.5);
+            const midToP3 = p.constructor.Vector.sub(p3, midBase);
+            if (basePerp.dot(midToP3) < 0) {
+                basePerp.mult(-1);
+            }
+
+            const p3_proj_len = p.constructor.Vector.sub(p3, p1).dot(baseNormal);
+            const t = s * p3_proj_len / h;
+
+            const offsetVec = baseNormal.copy().mult(t);
+            const sideVec = baseNormal.copy().mult(s);
+            const heightVec = basePerp.copy().mult(s);
+            
+            const v_bot1 = p.constructor.Vector.add(p1, offsetVec);
+            const v_bot2 = p.constructor.Vector.add(v_bot1, sideVec);
+            const v_top1 = p.constructor.Vector.add(v_bot1, heightVec);
+            const v_top2 = p.constructor.Vector.add(v_bot2, heightVec);
 
             p.fill(color);
             p.noStroke();
             p.quad(v_top1.x, v_top1.y, v_top2.x, v_top2.y, v_bot2.x, v_bot2.y, v_bot1.x, v_bot1.y);
             
+            const width = p.dist(v_bot1.x, v_bot1.y, v_bot2.x, v_bot2.y);
+            const height = p.dist(v_bot1.x, v_bot1.y, v_top1.x, v_top1.y);
+            
+            // Position the label OUTSIDE the square for better visibility
+            const midBottom = p.constructor.Vector.lerp(v_bot1, v_bot2, 0.5);
+            // The perpendicular vector points IN, so we move in the opposite direction (out)
+            const labelPos = p.constructor.Vector.sub(midBottom, basePerp.copy().normalize().mult(15));
+
+            p.fill(0);
+            p.textSize(12);
+            p.textAlign(p.CENTER, p.CENTER);
+            p.text(`${width.toFixed(0)}x${height.toFixed(0)}`, labelPos.x, labelPos.y);
+
             return s;
         };
 
