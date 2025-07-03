@@ -26,14 +26,16 @@ function NumberLogicSolver() {
         borderRadius: '8px'
       }}>
         <p><strong>{t('t55_for_n')} n = {selectedN}</strong>:</p>
-        <p><code>x = (1996 - {selectedN}) / 9 = {1996 - selectedN} / 9 = {x.toFixed(4)}</code></p>
+        <p><span className="formula">x = (1996 - {selectedN}) / 9 = {1996 - {selectedN}} / 9 = {x.toFixed(4)}</span></p>
         {isInteger ? (
-          <p style={{ color: 'green', fontWeight: 'bold' }}>
-            {t('t55_x_is_int')}
+          <p>
+            <span className="symbol-box success">{t('t55_x_is_int_symbol')}</span>
+            <span style={{ color: 'green' }}>{t('t55_x_is_int_text')}</span>
           </p>
         ) : (
-          <p style={{ color: 'tomato' }}>
-            {t('t55_x_not_int')}
+          <p>
+            <span className="symbol-box error">{t('t55_x_not_int_symbol')}</span>
+            <span style={{ color: 'tomato' }}>{t('t55_x_not_int_text')}</span>
           </p>
         )}
       </div>
@@ -60,10 +62,10 @@ function NumberLogicSolver() {
   return (
     <div style={{ fontFamily: 'sans-serif' }}>
       <h3>{t('t55_step1_title')}</h3>
-      <p>{t('t55_step1_p1')} <code>10x + n</code></p>
-      <p>{t('t55_step1_p2')} <code>(10x + n) - x = 1996</code></p>
-      <p>⇒ <code>9x + n = 1996</code></p>
-      <p>⇒ <code style={{background: '#eee', padding: '0.2rem 0.5rem'}}>x = (1996 - n) / 9</code></p>
+      <p>{t('t55_step1_p1')} <span className="formula">10x + n</span></p>
+      <p>{t('t55_step1_p2')} <span className="formula">(10x + n) - x = 1996</span></p>
+      <p>⇒ <span className="formula">9x + n = 1996</span></p>
+      <p>⇒ <span className="formula">x = (1996 - n) / 9</span></p>
       <hr style={{ margin: '2rem 0' }} />
       <h3>{t('t55_step2_title')}</h3>
       <p>{t('t55_step2_p1')}</p>

@@ -78,7 +78,7 @@
     "td04_solution_p4": "Acest rezultat poate fi obținut din tabla înmulțirii ca",
 
     "t55_title": "Card T55: Problemă de logică cu numere",
-    "t55_problem": "Găsiți toate numerele naturale care se micșorează la 1996 atunci când din ele se scade numărul obținut prin eliminarea ultimei cifre.",
+    "t55_problem": "Găsiți toate numerele naturale în notația zecimală care se reduc la 1996 atunci când se scade din ele acest număr fără ultima sa cifră.",
     "t55_viz": "Urmați pașii de mai jos pentru a descoperi soluția. Vizualizarea vă ghidează prin procesul de transformare a problemei într-o ecuație și testarea sistematică a soluțiilor posibile.",
     
     "t55_step1_title": "Pasul 1: Transformarea problemei în ecuație",
@@ -88,8 +88,10 @@
     "t55_step2_p1": "'n' trebuie să fie o cifră de la 0 la 9. De asemenea, pentru ca 'x' să fie întreg, `(1996 - n)` trebuie să fie divizibil cu 9. Testează opțiunile de mai jos:",
     "t55_select_n": "Selectați o valoare pentru 'n' pentru a testa.",
     "t55_for_n": "Pentru",
-    "t55_x_is_int": "✓ 'x' este un număr întreg! Aceasta este o soluție validă.",
-    "t55_x_not_int": "✗ 'x' nu este un număr întreg. Încercați altă valoare pentru 'n'.",
+    "t55_x_is_int_symbol": "✓",
+    "t55_x_is_int_text": "'x' este un număr întreg! Aceasta este o soluție validă.",
+    "t55_x_not_int_symbol": "✗",
+    "t55_x_not_int_text": "'x' nu este un număr întreg. Încercați altă valoare pentru 'n'.",
     "t55_final_solution_title": "Soluția Finală",
     "t55_final_solution_p1": "Singura valoare pentru 'n' care produce un 'x' întreg este",
     "t55_final_solution_p2": "ceea ce ne dă",

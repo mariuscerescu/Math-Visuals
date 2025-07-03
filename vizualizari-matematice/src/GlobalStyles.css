@@ -53,4 +53,38 @@
 .example-button.active {
   background: #242424;
   color: white;
+}
+
+.formula {
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #f4f4f4;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  font-size: 1.2em; /* 20% larger than parent */
+  border: 1px solid #ddd;
+}
+
+.symbol-box {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 0.8rem;
+  vertical-align: middle;
+}
+
+.symbol-box.success {
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+}
+
+.symbol-box.error {
+  color: #721c24;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
 } 
