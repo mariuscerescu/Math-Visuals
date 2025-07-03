@@ -1,5 +1,5 @@
 import React from 'react';
-import KissingCirclesVisualizer from '../components/KissingCirclesVisualizer';
+import TwelveCircles from '../components/TwelveCircles';
 import { useLanguage } from '../contexts/LanguageContext';
 
 function TFig07Page() {
@@ -17,7 +17,7 @@ function TFig07Page() {
       </div>
 
       <div className="visualization-container" style={{ display: 'flex', justifyContent: 'center' }}>
-        <KissingCirclesVisualizer />
+        <TwelveCircles />
       </div>
     </div>
   );

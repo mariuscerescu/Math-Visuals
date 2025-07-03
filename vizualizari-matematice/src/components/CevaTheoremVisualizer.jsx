@@ -107,6 +107,7 @@ function CevaTheoremVisualizer() {
             p.fill('gray'); p.circle(D.x, D.y, 8);
             if (E) { p.fill('tomato'); p.circle(E.x, E.y, 8); }
             p.fill('green'); p.circle(P.x, P.y, 12);
+            p.fill('black'); p.text('P', P.x - 5, P.y + 25);
 
             if (p.frameCount % 2 === 0) {
                 const ratio1 = p.dist(A.x, A.y, P.x, P.y) / p.dist(P.x, P.y, D.x, D.y);
