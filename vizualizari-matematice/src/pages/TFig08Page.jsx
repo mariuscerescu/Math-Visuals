@@ -6,15 +6,17 @@ function TFig08Page() {
     const { t } = useLanguage();
   return (
     <div>
-      <h2>{t('tfig08_title')}</h2>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('problem_label')}</strong> {t('tfig08_problem')}
-      </p>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('viz_label')}</strong> {t('tfig08_viz')}
-      </p>
+      <h2 className="page-title">{t('tfig08_title')}</h2>
+      <div className="page-section">
+        <p className="problem-statement">
+          <strong className="section-label">{t('problem_label')}</strong> {t('tfig08_problem')}
+        </p>
+        <p className="visualization-description">
+          <strong className="section-label">{t('viz_label')}</strong> {t('tfig08_viz')}
+        </p>
+      </div>
 
-      <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+      <div className="visualization-container">
         <CevaTheoremVisualizer />
       </div>
     </div>

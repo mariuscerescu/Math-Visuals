@@ -17,35 +17,30 @@ function T47Page() {
 
   return (
     <div>
-      <h2>{t('t47_title')}</h2>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('problem_label')}</strong> {t('t47_problem')}
-      </p>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('viz_label')}</strong> {t('t47_viz')}
-      </p>
+      <h2 className="page-title">{t('t47_title')}</h2>
+      <div className="page-section">
+        <p className="problem-statement">
+          <strong className="section-label">{t('problem_label')}</strong> {t('t47_problem')}
+        </p>
+        <p className="visualization-description">
+          <strong className="section-label">{t('viz_label')}</strong> {t('t47_viz')}
+        </p>
+      </div>
 
-      <div style={{ margin: '1rem 0' }}>
-        <strong>{t('t47_select_example')}</strong>
+      <div className="button-group">
+        <strong className="section-label">{t('t47_select_example')}</strong>
         {examples.map((ex, index) => (
           <button 
             key={index} 
             onClick={() => setActiveExample(ex)}
-            style={{
-              marginLeft: '1rem',
-              padding: '0.5rem 1rem',
-              border: '1px solid #ccc',
-              background: activeExample.label === ex.label ? '#242424' : 'white',
-              color: activeExample.label === ex.label ? 'white' : 'black',
-              cursor: 'pointer'
-            }}
+            className={`example-button ${activeExample.label === ex.label ? 'active' : ''}`}
           >
             {ex.label}
           </button>
         ))}
       </div>
       
-      <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+      <div className="visualization-container">
         <TrigFromTangentVisualizer tangent={activeExample.value} />
       </div>
     </div>

@@ -6,15 +6,17 @@ function T55Page() {
   const { t } = useLanguage();
   return (
     <div>
-      <h2>{t('t55_title')}</h2>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('problem_label')}</strong> {t('t55_problem')}
-      </p>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('viz_label_interactive')}</strong> {t('t55_viz')}
-      </p>
+      <h2 className="page-title">{t('t55_title')}</h2>
+      <div className="page-section">
+        <p className="problem-statement">
+          <strong className="section-label">{t('problem_label')}</strong> {t('t55_problem')}
+        </p>
+        <p className="visualization-description">
+          <strong className="section-label">{t('viz_label_interactive')}</strong> {t('t55_viz')}
+        </p>
+      </div>
 
-      <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+      <div className="visualization-container">
         <NumberLogicSolver />
       </div>
     </div>

@@ -6,16 +6,19 @@ function T59Page() {
   const { t } = useLanguage();
   return (
     <div>
-      <h2>{t('t59_title')}</h2>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('problem_label')}</strong> 
-        <code> {t('t59_problem')}</code>
-      </p>
-      <p style={{ maxWidth: '700px' }}>
-        <strong>{t('viz_label')}</strong> {t('t59_viz')}
-      </p>
+      <h2 className="page-title">{t('t59_title')}</h2>
+      <div className="page-section">
+        <p className="problem-statement">
+          <strong className="section-label">{t('problem_label')}</strong>
+          {' '}
+          {t('t59_problem')}
+        </p>
+        <p className="visualization-description">
+          <strong className="section-label">{t('viz_label')}</strong> {t('t59_viz')}
+        </p>
+      </div>
 
-      <div style={{ marginTop: '2rem', padding: '1rem', border: '1px solid #eee', borderRadius: '8px' }}>
+      <div className="visualization-container">
         <InequalityGrapher />
       </div>
     </div>

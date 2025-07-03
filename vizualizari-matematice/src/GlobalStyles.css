@@ -1,0 +1,56 @@
+/* src/GlobalStyles.css */
+
+.page-title {
+  font-size: 2.2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  color: #333;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.page-section {
+  max-width: 800px;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.section-label {
+  font-weight: 700;
+  color: #242424;
+}
+
+.problem-statement,
+.visualization-description {
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.visualization-container {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid #eee;
+  border-radius: 8px;
+}
+
+.button-group {
+  margin: 1.5rem 0;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.example-button {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  background: white;
+  color: black;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.example-button.active {
+  background: #242424;
+  color: white;
+} 

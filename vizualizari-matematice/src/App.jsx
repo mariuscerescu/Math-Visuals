@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import './GlobalStyles.css';
 
 function App() {
   return (
