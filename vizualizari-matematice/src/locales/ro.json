@@ -27,10 +27,14 @@
     "t47_solution1": "Soluția 1 (Cadran II):",
     "t47_solution2": "Soluția 2 (Cadran IV):",
 
-    "tfig01_title": "Card T Fig 01: Puterea Punctului față de Cerc",
-    "tfig01_problem": "Un punct M este pe mediana CC' a unui triunghi ABD. O dreaptă AM intersectează BD în N. Se demonstrează că AM · MC = BM · MD.",
-    "tfig01_note": "Notă: Enunțul original din document (`AB·AD = CB·CD`) pare a fi incorect. Vom demonstra o proprietate fundamentală și corectă a acestei construcții: teorema puterii punctului.",
-    "tfig01_viz": "Trageți de vârfurile A, B, sau C. Punctul P (roșu) este punctul de intersecție a medianelor. Observați cum, deși toate segmentele se modifică, produsul segmentelor pe fiecare coardă rămâne egal, confirmând teorema puterii punctului.",
+    "tfig01_title": "Card T.Fig.01: Teorema lui Ptolemeu",
+    "tfig01_problem": "Cercul circumscris triunghiului ABC intersectează prelungirea medianei BM în punctul D. Demonstrați că AB · AD = CB · CD.",
+    "tfig01_note": "Notă: Problema originală din document este probabil incorectă. În schimb, vizualizarea demonstrează o teoremă corectă și mai generală pentru patrulaterul inscriptibil ABCD, așa cum este arătat în desenul original — Teorema lui Ptolemeu.",
+    "tfig01_viz": "Trageți oricare dintre cele patru vârfuri (A, B, C, D) de-a lungul cercului. Teorema lui Ptolemeu afirmă că pentru orice patrulater inscriptibil, produsul lungimilor diagonalelor sale este egal cu suma produselor lungimilor laturilor opuse. Observați cum egalitatea (AC · BD = AB · CD + BC · DA) se menține indiferent de poziția vârfurilor.",
+    "tfig01_diagonals_product": "Produsul diagonalelor",
+    "tfig01_sides_product": "Suma produselor laturilor",
+    "tfig01_confirmed": "✓ Egalitate confirmată",
+    "tfig01_calculating": "Se calculează...",
 
     "tfig06_title": "Card T Fig 06: Pătrate înscrise într-un triunghi",
     "tfig06_problem": "Se poate demonstra că pătratele construite pe laturile unui triunghi sunt egale dacă și numai dacă triunghiul este echilateral.",

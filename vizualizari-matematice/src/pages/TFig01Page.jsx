@@ -1,5 +1,5 @@
 import React from 'react';
-import CircleMedianVisualizer from '../components/CircleMedianVisualizer';
+import PtolemyTheoremVisualizer from '../components/PtolemyTheoremVisualizer';
 import { useLanguage } from '../contexts/LanguageContext';
 
 function TFig01Page() {
@@ -20,8 +20,8 @@ function TFig01Page() {
         </p>
       </div>
 
-      <div className="visualization-container">
-        <CircleMedianVisualizer />
+      <div className="visualization-container" style={{display: 'flex', justifyContent: 'center'}}>
+        <PtolemyTheoremVisualizer />
       </div>
     </div>
   );
