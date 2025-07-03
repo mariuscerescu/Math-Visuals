@@ -73,6 +73,18 @@ function TrigFromTangentVisualizer({ tangent }) {
         {/* Afișaj interactiv la hover */}
         {activePoint && (
           <g>
+            {/* Linii de proiecție pentru cos și sin */}
+            <line 
+              x1={activePoint.svgX} y1={activePoint.svgY} 
+              x2={activePoint.svgX} y2={origin.y} 
+              stroke="royalblue" strokeWidth="1" strokeDasharray="4 2" 
+            />
+            <line 
+              x1={activePoint.svgX} y1={activePoint.svgY} 
+              x2={origin.x} y2={activePoint.svgY}
+              stroke="crimson" strokeWidth="1" strokeDasharray="4 2" 
+            />
+            
             <polygon
               points={`${origin.x},${origin.y} ${activePoint.svgX},${origin.y} ${activePoint.svgX},${activePoint.svgY}`}
               fill="rgba(100, 149, 237, 0.2)"
@@ -81,6 +93,25 @@ function TrigFromTangentVisualizer({ tangent }) {
             />
             <line x1={origin.x} y1={origin.y} x2={activePoint.svgX} y2={activePoint.svgY} stroke="royalblue" strokeWidth="2" />
             <circle cx={activePoint.svgX} cy={activePoint.svgY} r="10" fill="none" stroke="gold" strokeWidth="3" />
+            
+            {/* Etichete pentru valorile cos și sin */}
+            <text 
+              x={activePoint.svgX} 
+              y={activePoint.sin > 0 ? origin.y + 20 : origin.y - 15} 
+              fill="royalblue" 
+              textAnchor="middle"
+              style={{ fontSize: '16px', fontWeight: 'bold' }}
+            >
+              cos(α) = {activePoint.cos.toFixed(4)}
+            </text>
+            <text 
+              x={origin.x + 10} 
+              y={activePoint.svgY + (activePoint.sin > 0 ? -5 : 22)}
+              fill="crimson"
+              style={{ fontSize: '16px', fontWeight: 'bold' }}
+            >
+              sin(α) = {activePoint.sin.toFixed(4)}
+            </text>
           </g>
         )}
       </svg>
@@ -90,7 +121,7 @@ function TrigFromTangentVisualizer({ tangent }) {
         <p>{t('t47_solutions_intro')} <strong>tan(α) = {tangent.toFixed(3)}</strong>, {t('t47_solutions_exist')}</p>
         <div 
           onMouseEnter={() => setHoveredPoint(2)} onMouseLeave={() => setHoveredPoint(null)}
-          style={{padding: '0.5rem', borderRadius: '4px', background: hoveredPoint === 2 ? 'lightyellow' : 'transparent'}}
+          style={{padding: '0.5rem', borderRadius: '4px', background: hoveredPoint === 2 ? '#eaf6ff' : 'transparent', transition: 'background 0.3s'}}
         >
           <strong>{t('t47_solution1')}</strong>
           <p>sin(α) = {points[1].sin.toFixed(4)}</p>
@@ -98,7 +129,7 @@ function TrigFromTangentVisualizer({ tangent }) {
         </div>
         <div
           onMouseEnter={() => setHoveredPoint(1)} onMouseLeave={() => setHoveredPoint(null)}
-          style={{padding: '0.5rem', borderRadius: '4px', background: hoveredPoint === 1 ? 'lightyellow' : 'transparent'}}
+          style={{padding: '0.5rem', borderRadius: '4px', background: hoveredPoint === 1 ? '#eaf6ff' : 'transparent', transition: 'background 0.3s'}}
         >
           <strong>{t('t47_solution2')}</strong>
           <p>sin(α) = {points[0].sin.toFixed(4)}</p>
