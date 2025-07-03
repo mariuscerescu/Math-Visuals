@@ -1,8 +1,11 @@
+import { useLanguage } from '../contexts/LanguageContext';
+
 function HomePage() {
+  const { t } = useLanguage();
     return (
       <div>
-        <h1 className="page-title">Platformă de Vizualizări Matematice</h1>
-        <p className="page-section">Bine ați venit! Selectați o problemă din meniul de navigare pentru a vedea vizualizarea interactivă.</p>
+        <h1 className="page-title">{t('home_title')}</h1>
+        <p className="page-section">{t('home_intro')}</p>
       </div>
     );
   }
