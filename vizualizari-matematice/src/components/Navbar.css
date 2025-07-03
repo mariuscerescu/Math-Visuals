@@ -31,3 +31,9 @@
   .nav-links a:hover {
     color: #646cff;
   }
+  
+  .nav-links a.active-link {
+    color: #87CEFA; /* Light Sky Blue */
+    text-decoration: underline;
+    font-weight: bold;
+  }
