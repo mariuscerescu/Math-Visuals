@@ -3,9 +3,11 @@
 import React, { useRef } from 'react';
 import p5 from 'p5';
 import P5Canvas from './P5Canvas';
+import { useLanguage } from '../contexts/LanguageContext';
 
 function TriangleAltitudes() {
   const sliderContainer = useRef(null);
+  const { t } = useLanguage();
 
   const sketch = (p) => {
     let vertices = [];
@@ -43,6 +45,19 @@ function TriangleAltitudes() {
         }
       }
       return bestPoint;
+    };
+
+    // Helper function to find intersection of two lines
+    const lineIntersection = (p1, p2, p3, p4) => {
+      const den = (p1.x - p2.x) * (p3.y - p4.y) - (p1.y - p2.y) * (p3.x - p4.x);
+      if (den === 0) return null;
+      const t = ((p1.x - p3.x) * (p3.y - p4.y) - (p1.y - p3.y) * (p3.x - p4.x)) / den;
+      const u = -((p1.x - p2.x) * (p1.y - p3.y) - (p1.y - p2.y) * (p1.x - p3.x)) / den;
+
+      if (t > 0 && t < 1 && u > 0 && u < 1) {
+        return p.createVector(p1.x + t * (p2.x - p1.x), p1.y + t * (p2.y - p1.y));
+      }
+      return null;
     };
 
     p.setup = () => {
@@ -102,6 +117,20 @@ function TriangleAltitudes() {
       p.line(B.x, B.y, B1.x, B1.y);
       p.line(C.x, C.y, C1.x, C1.y);
       
+      // Check for concurrency and draw intersection point 'O'
+      const intersection1 = lineIntersection(A, A1, B, B1);
+      const intersection2 = lineIntersection(B, B1, C, C1);
+
+      if (intersection1 && intersection2) {
+        const distance = p.dist(intersection1.x, intersection1.y, intersection2.x, intersection2.y);
+        // Only show 'O' if the segments are concurrent (intersection points are very close)
+        if (distance < 1) {
+          p.fill('black');
+          p.noStroke();
+          p.text('O', intersection1.x + 5, intersection1.y - 5);
+        }
+      }
+      
       // Desenează picioarele cevienelor
       p.fill(isAltitude ? 'green' : 'tomato'); p.noStroke();
       p.ellipse(A1.x, A1.y, 7);
@@ -119,12 +148,12 @@ function TriangleAltitudes() {
           p.ellipse(v.x, v.y, 12);
       }
       
-      // Afișează textul
+      // Display text
       p.fill(0); p.noStroke(); p.textSize(16);
-      p.text(`Unghiul comun: ${angleSlider.value()}°`, 10, 30);
+      p.text(`${t('t46_angle_label')} = ${angleSlider.value()}°`, 10, 30);
       if(isAltitude) {
         p.fill('green');
-        p.text('La 90°, cevienele sunt ÎNĂLȚIMI!', 10, 60);
+        p.text(t('t46_altitude_note'), 10, 60);
       }
     };
   };
@@ -134,7 +163,7 @@ function TriangleAltitudes() {
       <P5Canvas sketch={sketch} />
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
         <div ref={sliderContainer} />
-        <p>Glisați pentru a schimba unghiul.</p>
+        <p>{t('t46_slider_instruction')}</p>
       </div>
     </div>
   );
