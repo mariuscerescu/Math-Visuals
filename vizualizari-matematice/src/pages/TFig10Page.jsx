@@ -1,5 +1,5 @@
 import React from 'react';
-import SimsonTheoremVisualizer from '../components/SimsonTheoremVisualizer';
+import DistancesToSidesAndTangents from '../components/DistancesToSidesAndTangents';
 import { useLanguage } from '../contexts/LanguageContext';
 
 function TFig10Page() {
@@ -12,15 +12,12 @@ function TFig10Page() {
           <strong className="section-label">{t('problem_label')}</strong> {t('tfig10_problem')}
         </p>
         <p className="visualization-description">
-          <em>{t('tfig10_note')}</em>
-        </p>
-        <p className="visualization-description">
           <strong className="section-label">{t('viz_label')}</strong> {t('tfig10_viz')}
         </p>
       </div>
 
       <div className="visualization-container">
-        <SimsonTheoremVisualizer />
+        <DistancesToSidesAndTangents />
       </div>
     </div>
   );
